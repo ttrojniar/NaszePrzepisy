@@ -1,0 +1,44 @@
+﻿<Window x:Class="NaszePrzepisy.Views.AddRecipe"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NaszePrzepisy.Views"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        DataContext="{Binding AddReciperVM, Source={StaticResource Locator}}"
+        Title="AddRecipe" Height="740" Width="590">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="30"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="250"/>
+            <RowDefinition Height="250"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="Pora" Margin="10,5,10,5"/>
+        <ComboBox Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding MealTimes}" SelectedItem="{Binding SelectedMealTime}" Height="25" Margin="5,5,5,5"/>
+        <TextBlock Grid.Column="1" Grid.Row="2" Text="Nazwa" Margin="10,5,10,5"/>
+        <TextBox Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding RecipeName}" Height="30" VerticalAlignment="Top" Margin="10,5,10,5"/>
+        <TextBlock Grid.Column="1" Grid.Row="3" Text="Składniki" Margin="10,5,10,5"/>
+        <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding NewIngridient}" Height="25" VerticalAlignment="Top" Margin="10,10,10,10"/>
+        <StackPanel Grid.Column="2" Grid.Row="4">
+            <Button Content="Dodaj" Command="{Binding AddButton}" Margin="5,10,5,5"/>
+            <Button Content="Usuń" Command="{Binding RemoveButton}" Margin="5,5,5,5"/>
+        </StackPanel>
+        <ListView Grid.Column="3" Grid.Row="4" ItemsSource="{Binding Ingridients}" SelectedIndex="{Binding SelectedIngridient}" Margin="10,10,10,10"/>
+        <TextBlock Grid.Column="1" Grid.Row="5" Text="Opis przygotowania" Margin="10,5,10,5"/>
+        <TextBox Grid.Column="3" Grid.Row="5" Text="{Binding PreparationInstruction, Mode=TwoWay}" TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Top" Margin="10,10,10,10" Height="220"/>
+        <Button Grid.Column="1" Grid.Row="6" HorizontalAlignment="Right" Content="OK" Margin="5,10,5,10" Command="{Binding OKClick}" Width="50" Height="25"/>
+        <Button Grid.Column="3" Grid.Row="6" HorizontalAlignment="Left" Content="Anuluj" Margin="5,10,5,10" Command="{Binding CancelClick}" Width="50" Height="25"/>
+    </Grid>
+</Window>

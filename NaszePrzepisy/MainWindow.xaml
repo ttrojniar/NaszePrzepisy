@@ -1,0 +1,35 @@
+﻿<Window x:Class="NaszePrzepisy.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mainUserControl="clr-namespace:NaszePrzepisy.Views"
+        xmlns:ignore="http://www.galasoft.ch/ignore"
+        mc:Ignorable="d ignore"
+        SizeToContent="WidthAndHeight"
+        Title="Nasze przepisy"
+        WindowStartupLocation="CenterScreen"
+        DataContext="{Binding Main, Source={StaticResource Locator}}">
+    
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Skins/MainSkin.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid x:Name="LayoutRoot">
+        <TabControl Margin="20,10,20,10" HorizontalAlignment="Center" SelectedItem="{Binding SelectedTab, Mode=TwoWay}">
+            <TabItem Header="Śniadania" Width="240">
+                <mainUserControl:MainUserControl/>
+            </TabItem>
+            <TabItem Header="Obiady" Width="240">
+                <mainUserControl:MainUserControl/>
+            </TabItem>
+            <TabItem Header="Kolacje" Width="240">
+                <mainUserControl:MainUserControl/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

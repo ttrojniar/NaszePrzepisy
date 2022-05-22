@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="NaszePrzepisy.Views.MainUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NaszePrzepisy.Views"
+             mc:Ignorable="d" 
+             DataContext="{Binding MainControlViewModel, Source={StaticResource Locator}}"
+             d:DesignHeight="600" d:DesignWidth="800"
+             IsEnabled="{Binding IsWindowEnabled}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="500"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="300"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="0" Grid.Row="0" Text="Przepis" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10"/>
+        <Border BorderThickness="1" BorderBrush="Black" Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" Margin="5,5,5,5">
+            <ListView ItemsSource="{Binding Recipes}" SelectedIndex="{Binding SelectedRecipe}"/>
+        </Border>
+        <TextBlock Grid.Column="1" Grid.Row="0" Text="Składniki" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10"/>
+        <Border BorderThickness="1" BorderBrush="Black" Grid.Column="1" Grid.Row="1" Margin="5,5,5,5">
+            <ListView ItemsSource="{Binding SelectedRecipeIngredients}"/>
+        </Border>
+        <TextBlock Grid.Column="1" Grid.Row="2" Text="Przygotowanie" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10"/>
+        <Border BorderThickness="1" BorderBrush="Black" Grid.Column="1" Grid.Row="3" Margin="5,5,5,5">
+            <ScrollViewer >
+                <TextBlock Text="{Binding SelectedRecipeInstruction}" TextWrapping="Wrap" Background="White"/>
+            </ScrollViewer>
+        </Border>
+        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="10,0,10,0">
+            <Button Content="Dodaj przepis" Command="{Binding AddRecipe}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,10,0"/>
+            <Button Content="Edytuj przepis" Command="{Binding EditRecipe}" IsEnabled="{Binding Enabler}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,10,0"/>
+            <Button Content="Usun przepis" Command="{Binding RemoveRecipe}" IsEnabled="{Binding Enabler}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,10,0"/>
+            <Button Content="Wyślij na serwer" Command="{Binding UploadAll}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,10,0"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
